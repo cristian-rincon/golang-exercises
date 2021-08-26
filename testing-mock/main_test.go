@@ -5,12 +5,12 @@ import "testing"
 func TestGetFullTimeEmployeeById(t *testing.T) {
 	table := []struct {
 		id               int
-		cc              string
+		cc               string
 		mockFunc         func()
 		expectedEmployee FullTimeEmployee
 	}{
 		{
-			id:  1,
+			id: 1,
 			cc: "1",
 			mockFunc: func() {
 				GetEmployeeByID = func(id int) (Employee, error) {
@@ -22,7 +22,7 @@ func TestGetFullTimeEmployeeById(t *testing.T) {
 
 				GetPersonByCC = func(id string) (Person, error) {
 					return Person{
-						CC:  "1",
+						CC:   "1",
 						Name: "John Doe",
 						Age:  25,
 					}, nil
@@ -30,7 +30,7 @@ func TestGetFullTimeEmployeeById(t *testing.T) {
 			},
 			expectedEmployee: FullTimeEmployee{
 				Person: Person{
-					CC:  "1",
+					CC:   "1",
 					Name: "John Doe",
 					Age:  25,
 				},
@@ -54,6 +54,14 @@ func TestGetFullTimeEmployeeById(t *testing.T) {
 		if ft.Age != test.expectedEmployee.Age {
 			t.Errorf("Error, got %d expected %d", ft.Age, test.expectedEmployee.Age)
 		}
+		if ft.Name != test.expectedEmployee.Name {
+			t.Errorf("Error, got %s expected %s", ft.Name, test.expectedEmployee.Name)
+
+		}
+		if ft.Position != test.expectedEmployee.Position {
+			t.Errorf("Error, got %s expected %s", ft.Position, test.expectedEmployee.Position)
+		}
+
 	}
 
 	GetEmployeeByID = originalGetEmployeeByID
