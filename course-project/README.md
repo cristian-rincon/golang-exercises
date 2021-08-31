@@ -13,3 +13,5 @@ You can send a `POST` request to `/fibo` by using any REST Client. the structure
     "number": 25,
 }
 ```
+
+If you are using [httpie](https://httpie.io/), you can test by using this line: `http -f POST http://localhost:8081/fibo name=fibo25 delay=3s number=25`
