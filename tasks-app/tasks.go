@@ -16,11 +16,10 @@ func (t *taskList) deleteTask(index int) {
 
 func (t *taskList) printList(done bool) {
 	for idx, task := range t.tasks {
-		if task.done {
-			fmt.Println("Index", idx, ":", task.name, "is done")
-		}	else {
-			fmt.Println("Index", idx, ":", task.name, "is not done")
+		if task.done == done {
+			fmt.Println("id", idx, ":", task.name, "|", task.description, "|", task.done)
 		}
+
 	}
 }
 
@@ -48,22 +47,22 @@ func (t *task) updateName(newName string) string {
 func main() {
 	t := &task{
 		name:        "Task 1",
-		description: "Task description",
+		description: "Task description 1",
 		done:        false,
 	}
 	t1 := &task{
 		name:        "Task 2",
-		description: "Task description",
+		description: "Task description 2",
 		done:        true,
 	}
 	t2 := &task{
 		name:        "Task 3",
-		description: "Task description",
+		description: "Task description 3",
 		done:        false,
 	}
 	t3 := &task{
 		name:        "Task 4",
-		description: "Task description",
+		description: "Task description 5",
 		done:        false,
 	}
 
@@ -73,5 +72,11 @@ func main() {
 	// fmt.Printf("%+v\n", taskL.tasks[0])
 	taskL.addTask(t3)
 	t3.markAsDone()
-	taskL.printList(true)
+	taskL.printList(false)
+
+	mapTask := make(map[string]*task)
+	mapTask["1"] = t
+
+	fmt.Println(mapTask["1"].name)
+
 }
